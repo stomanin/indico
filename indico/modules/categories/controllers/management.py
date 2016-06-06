@@ -188,6 +188,12 @@ class RHManageCategoryProtection(RHManageCategoryBase):
         return FormDefaults(self.category, acl=acl, managers=managers, event_creators=event_creators)
 
 
+class RHCategoryMoveContents(RHManageCategoryBase):
+    def _process(self):
+        return WPCategoryManagement.render_template('management/move_category_contents.html', self.category,
+                                                    active_menu_item='')
+
+
 class RHSortSubcategories(RHManageCategoryBase):
     def _process(self):
         subcategories = {category.id: category for category in self.category.children}
