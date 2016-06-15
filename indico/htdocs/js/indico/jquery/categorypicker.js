@@ -21,6 +21,7 @@
     $.widget('indico.categorypicker', {
         options: {
             categoryId: 0,
+            height: null,
             actionButtonText: $T.gettext("Select"),
             onAction: function() {}
         },
@@ -56,6 +57,10 @@
                     .append(self.$categoryTree)
                     .append(self.$categoryResults));
             self.element.append(self.$categoryNavigator);
+
+            if (self.options.height) {
+                self.$category.closest('.category-picker').height(self.options.height);
+            }
         },
 
         _createSearchField: function() {
