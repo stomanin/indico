@@ -23,8 +23,9 @@
             </a>
         </td>
         <td class="i-table actions">
-            <a class="i-button-icon icon-transmission"
-               title="{% trans %}Move to another category{% endtrans %}"></a>
+            <a class="i-button-icon icon-transmission js-move-category"
+               title="{% trans %}Move under another category{% endtrans %}"
+               href="#"></a>
             {% if subcategory.deep_children_count or subcategory.deep_events_count %}
                 <a class="i-button-icon icon-remove disabled"
                    title="{% trans %}This category cannot be deleted because it is not empty.{% endtrans %}"></a>
