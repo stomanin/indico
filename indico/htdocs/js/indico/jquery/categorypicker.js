@@ -321,6 +321,12 @@
                 $.ajax({
                     url: build_url(Indico.Urls.Categories.info, {category_id: id}),
                     dataType: 'json',
+                    beforeSend: function() {
+                        self._toggleLoading();
+                    },
+                    complete: function() {
+                        self._toggleLoading();
+                    },
                     error: handleAjaxError,
                     success: function(data) {
                         if (data) {
@@ -347,6 +353,12 @@
                     self.dialog.close();
                 }
             });
+        },
+
+        _toggleLoading: function() {
+            var self = this;
+            self.$categoryNavigator.toggleClass('loading');
+            self.element.find('input').prop('disabled', self.$categoryNavigator.hasClass('loading'));
         },
 
         goToCategory: function(id) {
