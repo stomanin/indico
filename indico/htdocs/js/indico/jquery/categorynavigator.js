@@ -18,16 +18,16 @@
 (function($) {
     'use strict';
 
-    $.widget('indico.categorypicker', {
+    $.widget('indico.categorynavigator', {
         options: {
             // ID of the current category
             categoryId: 0,
             height: null,
             // The text contained in action buttons
             actionButtonText: $T.gettext("Select"),
-            // A dialog opens with the picker rendered on it
+            // A dialog opens with the navigator rendered on it
             openInDialog: false,
-            // The title for the category picker dialog
+            // The title for the category navigator dialog
             dialogTitle: $T.gettext("Select a category"),
             // Restrict action to categories with no subcategories
             selectLeafOnly: false,
@@ -60,7 +60,7 @@
 
         _createInline: function() {
             var self = this;
-            self.element.addClass('category-picker');
+            self.element.addClass('categorynav');
             self._createNavigator();
             self._createSearchField();
             self.goToCategory(self.options.categoryId);
@@ -70,7 +70,7 @@
             var self = this;
             ajaxDialog({
                 title: self.options.dialogTitle,
-                content: $('<div>', {class: 'category-picker-wrapper'}).append($('<div>'))[0].outerHTML,
+                content: $('<div>', {class: 'categorynav-wrapper'}).append($('<div>'))[0].outerHTML,
                 closeButton: true,
                 onOpen: function(dialog) {
                     self.element = dialog.contentContainer.children().first();
@@ -93,7 +93,7 @@
             self.element.append(self.$categoryNavigator);
 
             if (self.options.height) {
-                self.$category.closest('.category-picker').height(self.options.height);
+                self.$category.closest('.categorynav').height(self.options.height);
             }
         },
 
